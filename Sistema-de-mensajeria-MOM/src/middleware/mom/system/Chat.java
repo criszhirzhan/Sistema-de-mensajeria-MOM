@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chuidiang.ejemplos.activemq;
+package middleware.mom.system;
+
+/**
+ *
+ * @author Cristian
+ */
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -78,16 +83,16 @@ public class Chat {
       activeMQ();
    }
 
+   
+   
    private void activeMQ() throws JMSException {
       ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url);
       Connection connection = connectionFactory.createConnection();
       connection.start();
+      
 
       session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-      // Destination represents here our queue 'TESTQUEUE' on the
-      // JMS server. You don't have to do anything special on the
-      // server to create it, it will be created automatically.
       Destination destination = session.createTopic(subject);
 
       producer = session.createProducer(destination);
